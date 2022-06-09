@@ -29,7 +29,7 @@ function burgerMenu() {
 }
 burgerMenu();
 
-// Select
+// Select language
 const getTemplate = (data = [], placeholder, selectedId) => {
   let text = placeholder ?? "placeholder не указан";
 
@@ -181,7 +181,6 @@ class Select {
   }
 }
 
-// Инициализация плагина
 const select = new Select("#select", {
   placeholder: "Eng",
   selectedId: "1",
