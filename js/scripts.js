@@ -211,8 +211,20 @@ const select = new Select("#select", {
 function mouseover() {
   const listItem = document.querySelectorAll(".learn__list-item");
   const btnHover = document.querySelectorAll(".item__bottom-btn");
+  const learnHeight = document.querySelector(".learn");
+
+  const learnHeightClient = document.lastChild.clientWidth;
 
   for (let i = 0; i < listItem.length; i++) {
+    if (learnHeightClient > 1433) {
+      learnHeight.style.height = learnHeight.clientHeight + "px";
+    } else if (learnHeightClient < 1433 && learnHeightClient > 633) {
+      learnHeight.style.height = learnHeight.clientHeight - 8 + "px";
+    } else {
+      console.log(learnHeightClient);
+      learnHeight.style.height = learnHeight.clientHeight - 28 + "px";
+    }
+
     const heightStandart =
       listItem[i].clientHeight - btnHover[i].clientHeight - 28;
     let height = listItem[i].clientHeight - btnHover[i].clientHeight;
@@ -221,7 +233,7 @@ function mouseover() {
 
     listItem[i].style.maxHeight = heightStandart + "px";
 
-    listItem[i].addEventListener("mouseover", (e) => {
+    listItem[i].addEventListener("mouseover", () => {
       if (limit === 0) {
         listItem[i].style.maxHeight = maxHeight + "px";
         btnHover[i].classList.add("active");

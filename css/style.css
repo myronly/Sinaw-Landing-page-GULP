@@ -476,7 +476,7 @@ header .container {
 
 .info__decor {
   position: absolute;
-  top: -127%;
+  top: -110%;
   right: -10%;
   z-index: -1;
   max-width: 100%;
@@ -516,7 +516,6 @@ header .container {
 
 .learn {
   padding-top: 60px;
-  padding-bottom: 65px;
 }
 
 .learn__top {
@@ -546,10 +545,15 @@ header .container {
   display: -ms-flexbox;
   display: flex;
   gap: 32px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .learn__list-item {
-  max-width: 276px;
+  width: 276px;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(-53.38%, #202246), to(rgba(40, 43, 87, 0.17)));
   background: -o-linear-gradient(top, #202246 -53.38%, rgba(40, 43, 87, 0.17) 100%);
   background: linear-gradient(180deg, #202246 -53.38%, rgba(40, 43, 87, 0.17) 100%);
@@ -559,6 +563,24 @@ header .container {
   -webkit-transition: max-height 0.3s ease-out;
   -o-transition: max-height 0.3s ease-out;
   transition: max-height 0.3s ease-out;
+}
+
+.learn__btn-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 40px auto 60px auto;
+  background-color: inherit;
+  border: 1px solid #f5443b;
+  color: #f5443b;
+  -webkit-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
+.learn__btn-bottom:hover {
+  background-color: #f5443b;
+  color: #ffffff;
 }
 
 .item__top {
@@ -759,14 +781,6 @@ footer {
   .item__descr {
     max-width: 500px;
   }
-
-  .learn__list {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
 }
 
 @media screen and (max-width: 991.98px) {
@@ -935,6 +949,10 @@ footer {
     padding: 8px;
     top: 6.5px;
     right: 6.5px;
+  }
+
+  .learn__btn-bottom {
+    margin: 20px auto 30px auto;
   }
 }
 
