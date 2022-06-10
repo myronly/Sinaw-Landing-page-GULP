@@ -545,7 +545,6 @@ header .container {
   display: -ms-flexbox;
   display: flex;
   gap: 32px;
-  min-height: 485px;
 }
 
 .learn__list-item {
