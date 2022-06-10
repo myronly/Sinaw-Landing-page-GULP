@@ -5,17 +5,25 @@ function burgerMenu() {
   const menu = document.querySelector(".menu");
   const body = document.querySelector("body");
   const login = document.querySelector(".menu__login");
+  const section = document.querySelectorAll("section");
+
   burger.addEventListener("click", () => {
     if (!menu.classList.contains("active")) {
       menu.classList.add("active");
       burger.classList.add("active-burger");
       body.classList.add("locked");
       login.classList.add("active-bottom");
+      section.forEach((sect) => {
+        sect.style.filter = "blur(3px)";
+      });
     } else {
       menu.classList.remove("active");
       burger.classList.remove("active-burger");
       body.classList.remove("locked");
       login.classList.remove("active-bottom");
+      section.forEach((sect) => {
+        sect.style.filter = "blur(0)";
+      });
     }
   });
   window.addEventListener("resize", () => {
@@ -24,6 +32,9 @@ function burgerMenu() {
       burger.classList.remove("active-burger");
       body.classList.remove("locked");
       login.classList.remove("active-bottom");
+      section.forEach((sect) => {
+        sect.style.filter = "blur(0)";
+      });
     }
   });
 }
@@ -194,4 +205,41 @@ const select = new Select("#select", {
     input.value = item.value;
   },
 });
+
+// Leanr mouseover
+
+function mouseover() {
+  const listItem = document.querySelectorAll(".learn__list-item");
+  const btnHover = document.querySelectorAll(".item__bottom-btn");
+
+  for (let i = 0; i < listItem.length; i++) {
+    const heightStandart =
+      listItem[i].clientHeight - btnHover[i].clientHeight - 28;
+    let height = listItem[i].clientHeight - btnHover[i].clientHeight;
+    let maxHeight = listItem[i].clientHeight + btnHover[i].clientHeight;
+    let limit = 0;
+
+    // listItem[i].style.maxHeight = height + "px";
+    listItem[i].style.maxHeight = heightStandart + "px";
+
+    listItem[i].addEventListener("mouseover", (e) => {
+      if (limit === 0) {
+        // height = heightStandart;
+        listItem[i].style.maxHeight = maxHeight + "px";
+        btnHover[i].classList.add("active");
+        limit = 1;
+      }
+    });
+
+    listItem[i].addEventListener("mouseleave", () => {
+      if (limit === 1) {
+        height = heightStandart;
+        listItem[i].style.maxHeight = height + "px";
+        btnHover[i].classList.remove("active");
+        limit = 0;
+      }
+    });
+  }
+}
+mouseover();
 
