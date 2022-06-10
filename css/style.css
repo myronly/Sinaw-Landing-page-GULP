@@ -475,7 +475,7 @@ header .container {
 
 .info__decor {
   position: absolute;
-  top: -110%;
+  top: -127%;
   right: -10%;
   z-index: -1;
   max-width: 100%;

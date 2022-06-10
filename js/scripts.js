@@ -51,7 +51,7 @@ const getTemplate = (data = [], placeholder, selectedId) => {
       cls = "selected";
     }
     return `
-          <li class="select__item ${cls}" data-type="item" data-id="${item.id}">${item.value}</li>
+          <li class="select__item ${cls}" data-type="item" data-id="${item.id}" data-google-lang="${item.lang}">${item.value} </li>
       `;
   });
   return `
@@ -196,9 +196,9 @@ const select = new Select("#select", {
   placeholder: "Eng",
   selectedId: "1",
   data: [
-    { id: "1", value: "Eng" },
-    { id: "2", value: "Ukr" },
-    { id: "3", value: "Rus" },
+    { id: "1", value: "Eng", lang: "en" },
+    { id: "2", value: "Ukr", lang: "ua" },
+    { id: "3", value: "Rus", lang: "ru" },
   ],
   onSelect(item) {
     const input = document.querySelector(".hidden__input");
@@ -219,12 +219,10 @@ function mouseover() {
     let maxHeight = listItem[i].clientHeight + btnHover[i].clientHeight;
     let limit = 0;
 
-    // listItem[i].style.maxHeight = height + "px";
     listItem[i].style.maxHeight = heightStandart + "px";
 
     listItem[i].addEventListener("mouseover", (e) => {
       if (limit === 0) {
-        // height = heightStandart;
         listItem[i].style.maxHeight = maxHeight + "px";
         btnHover[i].classList.add("active");
         limit = 1;
