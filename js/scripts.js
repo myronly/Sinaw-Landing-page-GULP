@@ -43,17 +43,45 @@ burgerMenu();
 
 // Select language
 const getTemplate = (data = [], placeholder, selectedId) => {
+  let hash = window.location.hash;
+  hash = hash.substring(1);
+  localStorage.setItem("language", hash);
+  let change = localStorage.getItem("language");
   let text = placeholder ?? "placeholder не указан";
-
+  const allLang = ["en", "ru", "ua"];
   const items = data.map((item) => {
+    localStorage.setItem("language Placeholder", item.value);
+    localStorage.setItem("language ID", item.id);
+    let place = localStorage.getItem("language Placeholder");
+    let id = localStorage.getItem("language ID");
+    console.log(change, place, id);
     let cls = "";
+    function changeURLLanguage() {
+      let lang = change;
+      location.href = window.location.pathname + "#" + lang;
+      // location.reload();
+    }
+    changeURLLanguage();
+    function changeLanguage() {
+      if (!allLang.includes(hash)) {
+        location.href = window.location.pathname + "#en";
+        location.reload();
+      }
+      change = hash;
+      for (let key in langArr) {
+        let elem = document.querySelector(".lng-" + key);
+        if (elem) {
+          elem.innerHTML = langArr[key][hash];
+        }
+      }
+    }
+    changeLanguage();
     if (item.id === selectedId) {
       text = item.value;
       cls = "selected";
     }
     return `
-          <li class="select__item ${cls}" data-type="item" data-id="${item.id}" data-google-lang="${item.lang}">${item.value}</li>
-      `;
+      <li class="select__item ${cls}" data-type="item" data-id="${id}" data-google-lang="${item.lang}">${place}</li>`;
   });
   return `
       <input type="hidden" class="hidden__input" >
@@ -194,15 +222,16 @@ class Select {
 }
 const select = new Select("#select", {
   placeholder: "Eng",
-  // selectedId: 1,
+  selectedId: 1,
   data: [
     { id: "1", value: "Eng", lang: "en" },
     { id: "2", value: "Ukr", lang: "ua" },
     { id: "3", value: "Rus", lang: "ru" },
   ],
   onSelect(item) {
-    // console.log(this.data[1].id);
     const allLang = ["en", "ru", "ua"];
+    localStorage.setItem("language Placeholder", item.value);
+    localStorage.setItem("language ID", item.id);
     const input = document.querySelector(".hidden__input");
     input.value = item.lang;
     console.log(input.value);
