@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sinaw</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,12 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="css/google-translate.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"
-      defer
-    ></script>
-    <script src="js/google-translate.js" defer></script> -->
     <link rel="stylesheet" href="./css/style.min.css" />
   </head>
 
@@ -34,23 +25,31 @@
         <div class="menu">
           <ul class="menu__list">
             <li class="menu__item">
-              <a href="#" class="menu__item-link" data-scroll>Home</a>
+              <a href="#" class="menu__item-link lng-menuHome" data-scroll
+                >Home</a
+              >
             </li>
             <li class="menu__item">
-              <a href="#" class="menu__item-link" data-scroll>Courses</a>
+              <a href="#" class="menu__item-link lng-menuCourse" data-scroll
+                >Courses</a
+              >
             </li>
             <li class="menu__item">
-              <a href="#" class="menu__item-link" data-scroll>Webinar</a>
+              <a href="#" class="menu__item-link lng-menuWebinar" data-scroll
+                >Webinar</a
+              >
             </li>
             <li class="menu__item">
-              <a href="#" class="menu__item-link" data-scroll>Pricing</a>
+              <a href="#" class="menu__item-link lng-menuPricing" data-scroll
+                >Pricing</a
+              >
             </li>
           </ul>
           <div class="menu__right">
             <div class="menu__lang" id="select">
               <input type="hidden" class="hidden__input" />
             </div>
-            <button class="btn menu__login">Login</button>
+            <button class="btn menu__login lng-menuLogin">Login</button>
           </div>
         </div>
 
@@ -70,10 +69,10 @@
     <div class="hero">
       <img class="hero__img" src="img/heroStudent.png" alt="" />
       <div class="hero__right">
-        <h2 class="hero__title">
+        <h2 class="hero__title lng-heroTitle">
           Grow Your Skills To Advance Your Career Path.
         </h2>
-        <p class="hero__descr">
+        <p class="hero__descr lng-heroDescr">
           We have something big for you who want to level up!
         </p>
         <div class="hero__search">
@@ -86,7 +85,7 @@
             <img class="hero__search-loop" src="img/search.svg" alt="search" />
           </button>
         </div>
-        <p class="hero__info">Suggestions</p>
+        <p class="hero__info lng-heroSuggest">Suggestions</p>
         <ul class="hero__suggest">
           <li class="hero__suggest-item">UI UX Design</li>
           <li class="hero__suggest-item">CSS Fundamental</li>
@@ -278,6 +277,7 @@
 
     <!-- Footer -->
     
+    <script src="./js/lang.js"></script>
     <script src="./js/scripts.min.js"></script>
   </body>
 </html>

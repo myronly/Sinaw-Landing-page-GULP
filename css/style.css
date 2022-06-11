@@ -130,7 +130,7 @@ header .container {
   background-color: #171836;
   z-index: 1000;
   max-width: 100%;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .navbar {
@@ -475,6 +475,7 @@ header .container {
 }
 
 .info__decor {
+  z-index: -1;
   position: absolute;
   top: -110%;
   right: -10%;
@@ -587,6 +588,7 @@ header .container {
   text-align: center;
   position: relative;
   margin-bottom: 24px;
+  cursor: pointer;
 }
 
 .item__top-img {
@@ -667,6 +669,10 @@ header .container {
   gap: 15px;
 }
 
+.bottom__about-img {
+  cursor: pointer;
+}
+
 .bottom__about-whom-name {
   font-style: normal;
   font-weight: 500;
@@ -703,6 +709,10 @@ footer {
 
   .info__list-item {
     gap: 15px;
+  }
+
+  .learn__list {
+    gap: 18px;
   }
 }
 
@@ -784,6 +794,10 @@ footer {
 }
 
 @media screen and (max-width: 991.98px) {
+  header .container {
+    opacity: 0.9;
+  }
+
   nav {
     overflow: hidden;
   }

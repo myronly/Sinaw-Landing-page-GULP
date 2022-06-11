@@ -1,4 +1,5 @@
 // Custom Scripts
+"use strict";
 // Navbar
 function burgerMenu() {
   const burger = document.querySelector(".burger");
@@ -51,7 +52,7 @@ const getTemplate = (data = [], placeholder, selectedId) => {
       cls = "selected";
     }
     return `
-          <li class="select__item ${cls}" data-type="item" data-id="${item.id}" data-google-lang="${item.lang}">${item.value} </li>
+          <li class="select__item ${cls}" data-type="item" data-id="${item.id}" data-google-lang="${item.lang}">${item.value}</li>
       `;
   });
   return `
@@ -59,15 +60,15 @@ const getTemplate = (data = [], placeholder, selectedId) => {
       <div class="select__backdrop" data-type="backdrop"></div>
       <div class="select__input" data-type="input">
           <span data-type="value">${text}</span>
-          <svg 
-          data-type="arrow" 
-          class="global select__arrow"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+  <svg
+  data-type="arrow"
+  class="global select__arrow"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
           <path
             d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
             stroke="#D1D1D7"
@@ -91,7 +92,7 @@ const getTemplate = (data = [], placeholder, selectedId) => {
           />
         </svg>
         <svg
-          data-type="arrow" 
+          data-type="arrow"
           class="select__arrow"
           width="6"
           height="5"
@@ -191,37 +192,60 @@ class Select {
     this.$el.innerHTML = "";
   }
 }
-
 const select = new Select("#select", {
   placeholder: "Eng",
-  selectedId: "1",
+  // selectedId: 1,
   data: [
     { id: "1", value: "Eng", lang: "en" },
     { id: "2", value: "Ukr", lang: "ua" },
     { id: "3", value: "Rus", lang: "ru" },
   ],
   onSelect(item) {
+    // console.log(this.data[1].id);
+    const allLang = ["en", "ru", "ua"];
     const input = document.querySelector(".hidden__input");
-    input.value = item.value;
+    input.value = item.lang;
+    console.log(input.value);
+
+    function changeURLLanguage() {
+      let lang = input.value;
+      localStorage.setItem("language", lang);
+      location.href = window.location.pathname + "#" + lang;
+      // location.reload();
+    }
+    changeURLLanguage();
+    function changeLanguage() {
+      let hash = window.location.hash;
+      hash = hash.substring(1);
+      if (!allLang.includes(hash)) {
+        location.href = window.location.pathname + "#en";
+        location.reload();
+      }
+      input.value = hash;
+      for (let key in langArr) {
+        let elem = document.querySelector(".lng-" + key);
+        if (elem) {
+          elem.innerHTML = langArr[key][hash];
+        }
+      }
+    }
+    changeLanguage();
   },
 });
 
-// Leanr mouseover
+// Learn mouseover
 
 function mouseover() {
   const listItem = document.querySelectorAll(".learn__list-item");
   const btnHover = document.querySelectorAll(".item__bottom-btn");
   const learnHeight = document.querySelector(".learn");
 
-  const learnHeightClient = document.lastChild.clientWidth;
+  let learnHeightClient = document.lastChild.clientWidth - 35;
 
   for (let i = 0; i < listItem.length; i++) {
-    if (learnHeightClient > 1433) {
+    if (learnHeightClient > 633) {
       learnHeight.style.height = learnHeight.clientHeight + "px";
-    } else if (learnHeightClient < 1433 && learnHeightClient > 633) {
-      learnHeight.style.height = learnHeight.clientHeight - 8 + "px";
     } else {
-      console.log(learnHeightClient);
       learnHeight.style.height = learnHeight.clientHeight - 28 + "px";
     }
 
