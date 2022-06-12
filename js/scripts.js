@@ -44,19 +44,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Select language
   const getTemplate = (data = [], placeholder, selectedId) => {
+    let text = placeholder ?? "placeholder не указан";
+
     let hash = window.location.hash;
     hash = hash.substring(1);
     localStorage.setItem("language", hash);
     let change = localStorage.getItem("language");
-    let text = placeholder ?? "placeholder не указан";
     const allLang = ["en", "ru", "ua"];
+
     const items = data.map((item) => {
       localStorage.setItem("language Placeholder", item.value);
       localStorage.setItem("language ID", item.id);
       let place = localStorage.getItem("language Placeholder");
       let id = localStorage.getItem("language ID");
       console.log(change, place, id);
-      let cls = "";
       function changeURLLanguage() {
         let lang = change;
         location.href = window.location.pathname + "#" + lang;
@@ -76,7 +77,10 @@ window.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
+      console.log(item.id, selectedId);
       changeLanguage();
+      
+      let cls = "";
       if (item.id === selectedId) {
         text = item.value;
         cls = "selected";
@@ -265,19 +269,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Learn mouseover
   function mouseover() {
+    // mouseoverBtn
     const listItem = document.querySelectorAll(".learn__list-item");
     const btnHover = document.querySelectorAll(".item__bottom-btn");
-    const learnHeight = document.querySelector(".learn");
-
-    let learnHeightClient = document.lastChild.clientWidth - 35;
-
     for (let i = 0; i < listItem.length; i++) {
-      if (learnHeightClient > 633) {
-        learnHeight.style.height = learnHeight.clientHeight + "px";
-      } else {
-        learnHeight.style.height = `${learnHeight.clientHeight} - ${28}px`;
-      }
-
       const heightStandart =
         listItem[i].clientHeight - btnHover[i].clientHeight - 28;
       let height = listItem[i].clientHeight - btnHover[i].clientHeight;
@@ -303,6 +298,23 @@ window.addEventListener("DOMContentLoaded", () => {
         }
       });
     }
+
+    // learn
+    function heightLearn() {
+      const learnHeight = document.querySelector(".learn");
+      const learnHeightTop = document.querySelector(".learn__top");
+      const learnHeightList = document.querySelector(".learn__list");
+      const learnHeightBtn = document.querySelector(".learn__btn-bottom");
+      const NORMALIZE = 30;
+      let height =
+        learnHeightTop.clientHeight +
+        learnHeightList.clientHeight +
+        learnHeightBtn.clientWidth -
+        NORMALIZE;
+      learnHeight.style.height = height + "px";
+    }
+    window.addEventListener("resize", () => heightLearn());
+    heightLearn();
   }
   mouseover();
 });

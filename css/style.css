@@ -551,9 +551,13 @@ header .container {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .learn__list-item {
+  position: relative;
   max-width: 276px;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(-53.38%, #202246), to(rgba(40, 43, 87, 0.17)));
   background: -o-linear-gradient(top, #202246 -53.38%, rgba(40, 43, 87, 0.17) 100%);
@@ -570,13 +574,13 @@ header .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 40px auto 60px auto;
+  margin: 0 auto;
   background-color: inherit;
   border: 1px solid #f5443b;
   color: #f5443b;
-  -webkit-transition: 0.3s ease-out;
-  -o-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
 }
 
 .learn__btn-bottom:hover {
@@ -644,9 +648,9 @@ header .container {
 
 .item__bottom-btn {
   display: block;
-  -webkit-transition: opacity 0.4s ease-out, padding 0.3s ease-out;
-  -o-transition: opacity 0.4s ease-out, padding 0.3s ease-out;
-  transition: opacity 0.4s ease-out, padding 0.3s ease-out;
+  -webkit-transition: opacity 0.5s ease, padding 0.3s ease-out;
+  -o-transition: opacity 0.5s ease, padding 0.3s ease-out;
+  transition: opacity 0.5s ease, padding 0.3s ease-out;
   padding: 0 32px;
   opacity: 0;
   visibility: hidden;
@@ -963,10 +967,6 @@ footer {
     padding: 8px;
     top: 6.5px;
     right: 6.5px;
-  }
-
-  .learn__btn-bottom {
-    margin: 20px auto 30px auto;
   }
 }
 
