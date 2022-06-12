@@ -554,7 +554,7 @@ header .container {
 }
 
 .learn__list-item {
-  width: 276px;
+  max-width: 276px;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(-53.38%, #202246), to(rgba(40, 43, 87, 0.17)));
   background: -o-linear-gradient(top, #202246 -53.38%, rgba(40, 43, 87, 0.17) 100%);
   background: linear-gradient(180deg, #202246 -53.38%, rgba(40, 43, 87, 0.17) 100%);
