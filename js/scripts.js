@@ -44,8 +44,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Select language
   const getTemplate = (data = [], placeholder, selectedId) => {
-    let text = placeholder ?? "placeholder не указан";
-
     let hash = window.location.hash;
     hash = hash.substring(1);
     localStorage.setItem("language", hash);
@@ -53,15 +51,9 @@ window.addEventListener("DOMContentLoaded", () => {
     const allLang = ["en", "ru", "ua"];
 
     const items = data.map((item) => {
-      localStorage.setItem("language Placeholder", item.value);
-      localStorage.setItem("language ID", item.id);
-      let place = localStorage.getItem("language Placeholder");
-      let id = localStorage.getItem("language ID");
-      console.log(change, place, id);
       function changeURLLanguage() {
         let lang = change;
         location.href = window.location.pathname + "#" + lang;
-        // location.reload();
       }
       changeURLLanguage();
       function changeLanguage() {
@@ -77,22 +69,31 @@ window.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-      console.log(item.id, selectedId);
       changeLanguage();
-      
+
+      if (hash === "eu") {
+        placeholder = "Eng";
+        selectedId = "1";
+      } else if (hash === "ua") {
+        placeholder = "Ukr";
+        selectedId = "2";
+      } else if (hash === "ru") {
+        placeholder = "Rus";
+        selectedId = "3";
+      }
+
       let cls = "";
       if (item.id === selectedId) {
-        text = item.value;
         cls = "selected";
       }
       return `
-      <li class="select__item ${cls}" data-type="item" data-id="${id}" data-google-lang="${item.lang}">${place}</li>`;
+      <li class="select__item ${cls}" data-type="item" data-id="${item.id}" data-google-lang="${item.lang}">${item.value}</li>`;
     });
     return `
       <input type="hidden" class="hidden__input" >
       <div class="select__backdrop" data-type="backdrop"></div>
       <div class="select__input" data-type="input">
-          <span data-type="value">${text}</span>
+          <span data-type="value">${placeholder}</span>
   <svg
   data-type="arrow"
   class="global select__arrow"
@@ -147,7 +148,6 @@ window.addEventListener("DOMContentLoaded", () => {
       </div>
   `;
   };
-
   class Select {
     constructor(selector, options) {
       this.$el = document.querySelector(selector);
@@ -227,7 +227,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   const select = new Select("#select", {
     placeholder: "Eng",
-    selectedId: 1,
+    selectedId: "1",
     data: [
       { id: "1", value: "Eng", lang: "en" },
       { id: "2", value: "Ukr", lang: "ua" },
@@ -317,5 +317,63 @@ window.addEventListener("DOMContentLoaded", () => {
     heightLearn();
   }
   mouseover();
+
+  // Video
+  const video = document.querySelector("video");
+  const progress = document.querySelector(".player__progress");
+  const progressTime = document.querySelector(".player__time-current");
+  const progressTotalTime = document.querySelector(".player__time-total");
+  const playBtn = document.querySelector(".player__play-pause");
+  const voiceOn = document.querySelector("video");
+  const voiceOff = document.querySelector("video");
+  const maximize = document.querySelector("video");
+
+  const play = document.querySelector(".play");
+  const pause = document.querySelector(".pause");
+  // Play & Pause
+  function toggleVideo() {
+    if (video.paused) {
+      play.style.cssText = "display: block";
+      pause.style.cssText = "display: none";
+      video.play();
+    } else {
+      play.style.cssText = "display: none";
+      pause.style.cssText = "display: block";
+      video.pause();
+    }
+  }
+  playBtn.addEventListener("click", toggleVideo);
+
+  function updateProgress() {
+    progress.value = (video.currentTime / video.duration) * 100;
+
+    // Minutes
+    let minites = Math.floor(video.currentTime / 60);
+    if (minites < 10) {
+      minites = "0" + minites;
+    }
+    let minitesTotal = Math.floor(video.duration / 60);
+    if (minitesTotal < 10) {
+      minitesTotal = "0" + minitesTotal;
+    }
+
+    // Seconds
+    let seconds = Math.floor(video.currentTime % 60);
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    let secondsTotal = Math.floor(video.duration % 60);
+    if (secondsTotal < 10) {
+      secondsTotal = "0" + secondsTotal;
+    }
+    progressTime.innerHTML = `${minites}:${seconds}`;
+    progressTotalTime.innerHTML = `/ ${minitesTotal}:${secondsTotal}`;
+  }
+  video.addEventListener("timeupdate", updateProgress);
+
+  function setProgress() {
+    video.currentTime = (progress.value * video.duration) / 100;
+  }
+  progress.addEventListener("change", setProgress);
 });
 

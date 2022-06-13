@@ -694,6 +694,204 @@ header .container {
   color: rgba(255, 255, 255, 0.4);
 }
 
+.webinar {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.webinar__top {
+  text-align: center;
+}
+
+.webinar__top-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 150%;
+  color: rgba(255, 255, 255, 0.8);
+  padding-bottom: 20px;
+}
+
+.webinar__top-descr {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: rgba(255, 255, 255, 0.4);
+  padding-bottom: 100px;
+}
+
+.player {
+  visibility: hidden;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 620px;
+  max-height: 352px;
+  margin: 0 auto;
+  -webkit-transition: 0.3s ease-out visibility;
+  -o-transition: 0.3s ease-out visibility;
+  transition: 0.3s ease-out visibility;
+}
+
+.player:hover {
+  visibility: visible;
+}
+
+.player__video {
+  visibility: visible;
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  background: -o-linear-gradient(270.1deg, rgba(23, 24, 54, 0.87) 0.08%, rgba(31, 33, 67, 0.4) 50%, rgba(23, 24, 54, 0.87) 99.92%);
+  background: linear-gradient(179.9deg, rgba(23, 24, 54, 0.87) 0.08%, rgba(31, 33, 67, 0.4) 50%, rgba(23, 24, 54, 0.87) 99.92%);
+  border: 3.90968px solid rgba(34, 32, 131, 0.13);
+  border-radius: 23.4581px;
+}
+
+.player__name {
+  position: absolute;
+  top: 25px;
+  left: 40px;
+  right: 40px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.5484px;
+  line-height: 150%;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.player__play-pause {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  background: rgba(226, 226, 244, 0.3);
+  border: 0.853021px solid rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+}
+
+.player__play-pause .play {
+  display: none;
+  max-width: 42px;
+  max-height: 42px;
+}
+
+.player__play-pause .pause {
+  left: 5px;
+}
+
+.player__play-pause svg {
+  position: relative;
+  fill: #171836;
+  width: 50px;
+  height: 50px;
+}
+
+.player__use {
+  padding: 15px 40px 0 40px;
+  max-width: 1920px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-height: 80px;
+}
+
+.player__bottom {
+  max-width: 1920px;
+  width: 99%;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  bottom: 17px;
+}
+
+.player__progress {
+  cursor: pointer;
+  max-width: 1920px;
+  width: 98%;
+}
+
+.player__time {
+  width: 130px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.5484px;
+  line-height: 150%;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.player__volMx {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 24px;
+}
+
+.player__volume {
+  cursor: pointer;
+  fill: #bfbfc7;
+  opacity: 0.8;
+}
+
+.player__volume-high {
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.player__volume-mute {
+  display: none;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.player__maximize {
+  cursor: pointer;
+}
+
 footer {
   display: block;
 }
