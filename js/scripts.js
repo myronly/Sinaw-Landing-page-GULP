@@ -324,12 +324,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const progressTime = document.querySelector(".player__time-current");
   const progressTotalTime = document.querySelector(".player__time-total");
   const playBtn = document.querySelector(".player__play-pause");
-  const voiceOn = document.querySelector("video");
-  const voiceOff = document.querySelector("video");
-  const maximize = document.querySelector("video");
+  const volumeProgress = document.querySelector(".player__volume-progress");
+  const volumeToggle = document.querySelector(".volume__on-off");
+  const volumeOn = document.querySelector(".player__volume-high");
+  const volumeOff = document.querySelector(".player__volume-mute");
+  const maximize = document.querySelector(".player__maximize");
 
-  const play = document.querySelector(".play");
-  const pause = document.querySelector(".pause");
   // Play & Pause
   function toggleVideo() {
     if (video.paused) {
@@ -342,8 +342,11 @@ window.addEventListener("DOMContentLoaded", () => {
       video.pause();
     }
   }
+  const play = document.querySelector(".player .play");
+  const pause = document.querySelector(".player .pause");
   playBtn.addEventListener("click", toggleVideo);
 
+  // updateProgress
   function updateProgress() {
     progress.value = (video.currentTime / video.duration) * 100;
 
@@ -368,12 +371,95 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     progressTime.innerHTML = `${minites}:${seconds}`;
     progressTotalTime.innerHTML = `/ ${minitesTotal}:${secondsTotal}`;
+    progressInput();
   }
   video.addEventListener("timeupdate", updateProgress);
 
+  // progressInput
+  function progressInput() {
+    for (let e of document.querySelectorAll(
+      'input[type="range"].slider-progress'
+    )) {
+      e.style.setProperty("--value", e.value);
+      e.style.setProperty("--min", e.min == "" ? "0" : e.min);
+      e.style.setProperty("--max", e.max == "" ? "100" : e.max);
+      e.addEventListener("click", () =>
+        e.style.setProperty("--value", e.value)
+      );
+    }
+  }
+  progressInput();
+
+  // setProgress
   function setProgress() {
     video.currentTime = (progress.value * video.duration) / 100;
   }
   progress.addEventListener("change", setProgress);
+
+  // openFullscreen
+  function openFullscreen() {
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    } else if (video.msRequestFullscreen) {
+      video.msRequestFullscreen();
+    }
+  }
+  maximize.addEventListener("click", openFullscreen);
+
+  // progressVolume
+  function progressVolume() {
+    for (let e of document.querySelectorAll(
+      'input[type="range"].slider-progress-vol'
+    )) {
+      e.style.setProperty("--value", e.value);
+      e.style.setProperty("--min", e.min == "" ? "0" : e.min);
+      e.style.setProperty("--max", e.max == "" ? "100" : e.max);
+      e.addEventListener("input", () =>
+        e.style.setProperty("--value", e.value)
+      );
+    }
+  }
+  progressVolume();
+
+  // volumeChange
+  function volumeChange() {
+    lastVolume = volumeProgress.value / 100;
+    video.volume = volumeProgress.value / 100;
+    volumeOn.style.display = "block";
+    volumeOff.style.display = "none";
+    if (volumeProgress.value < 1) {
+      volumeOn.style.display = "none";
+      volumeOff.style.display = "block";
+    }
+    progressVolume();
+  }
+  let lastVolume = 0;
+  video.volume = 0.5;
+  volumeProgress.addEventListener("change", volumeChange);
+  volumeChange();
+
+  // volumeDisplayToggle
+  function volumeDisplayToggle() {
+    if (
+      volumeOn.style.display === "none" &&
+      volumeOff.style.display === "block"
+    ) {
+      volumeProgress.value = lastVolume * 100;
+      video.volume = lastVolume;
+      volumeOn.style.display = "block";
+      volumeOff.style.display = "none";
+    } else {
+      volumeProgress.value = 0;
+      video.volume = 0;
+      volumeOn.style.display = "none";
+      volumeOff.style.display = "block";
+    }
+    progressVolume();
+  }
+  volumeOn.style.display = "block";
+  volumeOff.style.display = "none";
+  volumeToggle.addEventListener("click", volumeDisplayToggle);
 });
 
