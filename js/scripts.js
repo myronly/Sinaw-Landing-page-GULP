@@ -319,7 +319,7 @@ window.addEventListener("DOMContentLoaded", () => {
   mouseover();
 
   // VideoAdd
-  const videoInner = document.querySelector(".webinar__slider");
+  const videoInner = document.querySelector(".webinar__slider-wrapper");
   let countVideo = 0;
 
   class Video {
@@ -332,10 +332,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
     addResult() {
       const element = document.createElement("div");
-      element.classList.add("player");
+      element.classList.add("player", "swiper-slide");
+
       element.setAttribute("data-video-id", ++countVideo);
       element.innerHTML = `
-        <video class="player__video" src="${this.src}" playsinline></video>
+        <video class="player__video" src="${this.src}"></video>
         <div class="player__items">
           <p class="player__name">${this.name}</p>
           <div class="player__play-pause">
@@ -490,6 +491,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const play = document.querySelectorAll(".player .play");
     const pause = document.querySelectorAll(".player .pause");
     playBtn[i].addEventListener("click", toggleVideo);
+    playBtn[i].addEventListener("touchstart", toggleVideo);
+    playBtn[i].addEventListener("touchend", toggleVideo);
 
     // updateProgress
     function updateProgress() {
@@ -608,4 +611,3 @@ window.addEventListener("DOMContentLoaded", () => {
     volumeToggle[i].addEventListener("click", volumeDisplayToggle);
   }
 });
-

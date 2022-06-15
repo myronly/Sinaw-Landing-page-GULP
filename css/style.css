@@ -721,7 +721,7 @@ header .container {
   padding-bottom: 100px;
 }
 
-.webinar__slider {
+.webinar__slider-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -935,7 +935,7 @@ header .container {
 }
 
 input[type=range].styled-slider {
-  height: 0;
+  background-color: inherit;
   -webkit-appearance: none;
 }
 
@@ -1041,7 +1041,7 @@ input[type=range].styled-slider.slider-progress::-ms-fill-lower {
 }
 
 input[type=range].styled-slider-vol {
-  height: 0;
+  background-color: inherit;
   -webkit-appearance: none;
 }
 
