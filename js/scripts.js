@@ -335,7 +335,7 @@ window.addEventListener("DOMContentLoaded", () => {
       element.classList.add("player");
       element.setAttribute("data-video-id", ++countVideo);
       element.innerHTML = `
-        <video class="player__video" src="${this.src}"></video>
+        <video class="player__video" src="${this.src}" playsinline></video>
         <div class="player__items">
           <p class="player__name">${this.name}</p>
           <div class="player__play-pause">
