@@ -11,7 +11,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="./css/style.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
   </head>
 
   <body class="main__body">
@@ -280,8 +285,15 @@
           it’s Free!
         </p>
       </div>
-      <div class="webinar__slider">
-        <div class="webinar__slider-wrapper"></div>
+
+      <div class="webinar__video-wrapper">
+        <div class="webinar__slider swiper">
+          <div class="webinar__slider-wrapper swiper-wrapper"></div>
+        </div>
+
+        <!-- If we need navigation buttons
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
       </div>
     </div>
   </div>
@@ -292,11 +304,12 @@
 
     <!-- Footer -->
     
-    <script
-      src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
-      defer
-    ></script>
+
     <script src="./js/lang.js" defer></script>
     <script src="./js/scripts.min.js" defer></script>
+    <script
+      src="https://unpkg.com/swiper@8/swiper-bundle.min.js"
+      defer
+    ></script>
   </body>
 </html>

@@ -703,6 +703,10 @@ header .container {
   text-align: center;
 }
 
+.webinar__video-wrapper {
+  position: relative;
+}
+
 .webinar__top-title {
   font-style: normal;
   font-weight: 600;
@@ -725,8 +729,6 @@ header .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
 .player {
@@ -1143,6 +1145,11 @@ input[type=range].styled-slider-vol.slider-progress-vol::-ms-fill-lower {
   background: #f5463d;
   border: none;
   border-right-width: 0;
+}
+
+.swiper {
+  max-height: 344px;
+  max-width: 600px;
 }
 
 footer {
